@@ -38,10 +38,50 @@ public class AppBasics {
 		System.out.println("Bye for now, " + nameOfUser + "!");
 	}
 
+	public static String greetNoUserName(String appName) {
+		System.out.println("Hello there and welcome to the " + appName + " app.");
+		return scanner.nextLine();
+	}
+
 	public static String greetUser(String appName) {
 		System.out.println("Hello and welcome to the " + appName + " app.");
 		System.out.print("What shall I call you? ");
 		return scanner.nextLine();
+	}
+
+	public static void printAddingingEachLoopFor(int minInclusive, int maxInclusive, int numToDeIncrementBy,
+			String symbolBefore, String symbolAfter, String symbolBetween) {
+		for (int i = minInclusive; i <= maxInclusive; i += numToDeIncrementBy) {
+			if (i == minInclusive) {
+				System.out.print(symbolBefore + i + symbolAfter);
+			} else {
+				System.out.print(symbolBetween + symbolBefore + i + symbolAfter);
+			}
+		}
+		System.out.print("\n");
+	}
+
+	public static void printDividingEachLoopFor(int maxInclusive, int minInclusive, int numMultDivBy,
+			String symbolBefore, String symbolAfter, String symbolBetween) {
+
+		if (minInclusive < 0) {
+			for (int i = minInclusive; i <= maxInclusive; i = i / numMultDivBy) {
+				if (i == minInclusive) {
+					System.out.print(symbolBefore + i + symbolAfter);
+				} else {
+					System.out.print(symbolBetween + symbolBefore + i + symbolAfter);
+				}
+			}
+		} else {
+			for (int i = maxInclusive; i >= minInclusive; i = i / numMultDivBy) {
+				if (i == maxInclusive) {
+					System.out.print(symbolBefore + i + symbolAfter);
+				} else {
+					System.out.print(symbolBetween + symbolBefore + i + symbolAfter);
+				}
+			}
+		}
+		System.out.print("\n");
 	}
 
 	public static void printIntArray(int[] anArray) {
@@ -52,11 +92,41 @@ public class AppBasics {
 		}
 	}
 
-	public static int requestIntFromUser(String question) {
-		return requestIntFromUser(question, 0, 0);
+	public static void printMultiplyingEachLoopFor(int minInclusive, int maxInclusive, int numMultDivBy,
+			String symbolBefore, String symbolAfter, String symbolBetween) {
+		for (int i = minInclusive; i <= maxInclusive; i = i * numMultDivBy) {
+			if (i == minInclusive) {
+				System.out.print(symbolBefore + i + symbolAfter);
+			} else {
+				System.out.print(symbolBetween + symbolBefore + i + symbolAfter);
+			}
+		}
+		System.out.print("\n");
 	}
 
-	public static int requestIntFromUser(String question, int min, int max) {
+	public static void printSubtractingEachLoopFor(int maxInclusive, int minInclusive, int numToDeIncrementBy,
+			String symbolBefore, String symbolAfter, String symbolBetween) {
+		for (int i = maxInclusive; i >= minInclusive; i -= numToDeIncrementBy) {
+			if (i == maxInclusive) {
+				System.out.print(symbolBefore + i + symbolAfter);
+			} else {
+				System.out.print(symbolBetween + symbolBefore + i + symbolAfter);
+			}
+		}
+		System.out.print("\n");
+	}
+
+	public static String requestUserInfo(String prompt) {
+		System.out.print(prompt + " ");
+		String response = scanner.nextLine();
+		return response;
+	}
+
+	public static int requestUserInt(String question) {
+		return requestUserInt(question, 0, 0);
+	}
+
+	public static int requestUserInt(String question, int min, int max) {
 		String input;
 		int result = 0;
 		boolean isNotValid = true;
@@ -77,29 +147,7 @@ public class AppBasics {
 			} catch (NumberNotInRangeException e) {
 				System.out.println("You have not entered a number within the range of " + min + " and " + max + ".");
 			}
-		}
-		return result;
-	}
-
-	public static String requestUserInfo(String prompt) {
-		System.out.print(prompt + " ");
-		String response = scanner.nextLine();
-		return response;
-	}
-
-	public static int requestUserInt(String question) {
-		String input;
-		int result = 0;
-		boolean isNotValid = true;
-		while (isNotValid) {
-			try {
-				System.out.print(question + " ");
-				String response = scanner.nextLine();
-				result = Integer.parseInt(response);
-				isNotValid = false;
-			} catch (NumberFormatException e) {
-				System.out.print("The value you have entered is invalid. ");
-			}
+			isNotValid = false;
 		}
 		return result;
 	}
@@ -119,12 +167,10 @@ public class AppBasics {
 			}
 		}
 		return arrayInAString;
-
 		/*
 		 * IF i wanted to user foreach.. I don't because my [0] is diff from all
 		 * else for (int i : anArray) { arrayInAString += ", "; arrayInAString
 		 * += Integer.toString(anArray[i]); }
 		 */
-
 	}
 }
